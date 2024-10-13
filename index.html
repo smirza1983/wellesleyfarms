@@ -71,13 +71,7 @@
         }
     </style>
     <script>
-        document.getElementById('locateMe').addEventListener('click', function() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                alert("Geolocation is not supported by this browser.");
-            }
-        });
+    
         
         function toggleContactForm() {
             const form = document.getElementById('contact-form');
@@ -89,6 +83,12 @@
         
 
     function showPosition(position) {
+        if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        
         const userLat = position.coords.latitude;
         const userLon = position.coords.longitude;
 
@@ -140,7 +140,7 @@
     <h1>Buy from Farmers</h1>
 </header>
 <h1>Farm Locator</h1>
-<button id="locateMe">Locate Me</button>
+<button onclick="showPosition()">Locate Me</button>
 <table>
     <thead>
     <tr>
