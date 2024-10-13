@@ -71,6 +71,14 @@
         }
     </style>
     <script>
+        document.getElementById('locateMe').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        });
+        
         function toggleContactForm() {
             const form = document.getElementById('contact-form');
             const overlay = document.getElementById('overlay');
@@ -78,13 +86,7 @@
             overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
         }
 
-        document.getElementById('locateMe').addEventListener('click', function() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
-    });
+        
 
     function showPosition(position) {
         const userLat = position.coords.latitude;
