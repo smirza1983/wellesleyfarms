@@ -4,195 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farm Products</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
-        header, footer {
-            background-color: #4CAF50;
+        header {
+            background: #4CAF50;
             color: white;
             text-align: center;
-            padding: 1rem;
+            padding: 1em 0;
         }
-        nav a {
-            margin: 0 15px;
+        footer {
+            background: #333;
             color: white;
-            text-decoration: none;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-        }
-        .main {
-            flex: 1;
-            margin-right: 20px;
-        }
-        .sidebar {
-            width: 200px;
-            background: #f4f4f4;
-            padding: 10px;
+            text-align: center;
+            padding: 1em 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
         table {
-            width: 100%;
+            width: 70%;
+            margin: 20px auto;
             border-collapse: collapse;
         }
-        th, td {
+        table, th, td {
             border: 1px solid #ddd;
+        }
+        th, td {
             padding: 8px;
-            text-align: left;
+            text-align: center;
         }
         th {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #f2f2f2;
         }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
+        .sidebar {
+            position: fixed;
+            right: 0;
+            width: 200px;
+            background: #f9f9f9;
+            padding: 15px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
         }
-        button:hover {
-            opacity: 0.8;
-        }
-        .modal {
+        .contact-form {
             display: none;
             position: fixed;
-            z-index: 1;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            z-index: 10;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 300px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 5;
         }
     </style>
+    <script>
+        function toggleContactForm() {
+            const form = document.getElementById('contact-form');
+            const overlay = document.getElementById('overlay');
+            form.style.display = form.style.display === 'block' ? 'none' : 'block';
+            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
 </head>
 <body>
 
 <header>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
-    </nav>
+    <h1>Buy from Farmers</h1>
 </header>
 
-<div class="container">
-    <div class="main">
-        <h2>Farm Products</h2>
-        <button id="contactBtn">Contact Us</button>
-        <table>
-            <thead>
-                <tr>
-                    <th>Egg</th>
-                    <th>Chicken</th>
-                    <th>Beef</th>
-                    <th>Farm Name</th>
-                    <th>Address</th>
-                    <th>Distance (km)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>2</td>
-                    <td>Sunny Farm</td>
-                    <td>123 Farm Lane</td>
-                    <td>5.0</td>
-                </tr>
-                <tr>
-                    <td>20</td>
-                    <td>10</td>
-                    <td>4</td>
-                    <td>Green Valley</td>
-                    <td>456 Pasture Ave</td>
-                    <td>10.2</td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
-    </div>
+<table>
+    <tr>
+        <th>Egg</th>
+        <th>Chicken</th>
+        <th>Beef</th>
+        <th>Farm Name</th>
+        <th>Address</th>
+        <th>Distance from Your Location</th>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>5</td>
+        <td>8</td>
+        <td>Sunny Farm</td>
+        <td>123 Farm Rd</td>
+        <td>5 miles</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>3</td>
+        <td>10</td>
+        <td>Green Pastures</td>
+        <td>456 Country Lane</td>
+        <td>10 miles</td>
+    </tr>
+    <!-- More rows can be added here -->
+</table>
 
-    <div class="sidebar">
-        <h3>Links</h3>
-        <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-        </ul>
-    </div>
+<button onclick="toggleContactForm()">Contact Us</button>
+
+<div class="sidebar">
+    <h2>Links</h2>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Support</a></li>
+    </ul>
+</div>
+
+<div id="overlay" class="overlay" onclick="toggleContactForm()"></div>
+<div id="contact-form" class="contact-form">
+    <h2>Contact Us</h2>
+    <form>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <button onclick="toggleContactForm()">Close</button>
 </div>
 
 <footer>
-    <p>Visitors: <span id="visitorCount">0</span></p>
+    <p>&copy; 2024 Farm Products. All rights reserved.</p>
 </footer>
-
-<!-- Modal for Contact Us -->
-<div id="contactModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Contact Us</h2>
-        <form>
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name"><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email"><br>
-            <label for="message">Message:</label><br>
-            <textarea id="message" name="message"></textarea><br>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    let visitorCount = 0;
-    document.getElementById('visitorCount').innerText = ++visitorCount;
-
-    // Modal functionality
-    var modal = document.getElementById("contactModal");
-    var btn = document.getElementById("contactBtn");
-    var span = document.getElementsByClassName("close")[0];
-
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
 
 </body>
 </html>
