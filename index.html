@@ -98,10 +98,11 @@
             const farmLat = parseFloat(farm.getAttribute('data-lat'));
             const farmLon = parseFloat(farm.getAttribute('data-lon'));
             const distance = calculateDistance(userLat, userLon, farmLat, farmLon);
+            console.log(distance);
             farm.querySelector('.distance').textContent = distance.toFixed(2) + ' miles';
         });
 
-        alert("Your location: Latitude: " + userLat + ", Longitude: " + userLon);
+        console.log("Your location: Latitude: " + userLat + ", Longitude: " + userLon);
     }
 
     function calculateDistance(lat1, lon1, lat2, lon2) {
